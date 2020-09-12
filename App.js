@@ -1,21 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import Home from './views/Home';
+import AddAluno from './views/AddAluno';
+import ModificaAluno from './views/ModificaAluno';
+
 
 export default function App() {
+  const Stack = createStackNavigator();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+        <Stack.Screen name="AddAluno" component={AddAluno}
+          options={{
+            headerTitle: 'Cadastro de Clientes',
+            headerStyle: {
+              backgroundColor: '#148fcc',
+            },
+            headerTintColor: '#fff',
+          }} />
+        <Stack.Screen name="ModificaAluno" component={ModificaAluno}
+          options={{
+            headerTitle: 'Cadastro de Clientes',
+            headerStyle: {
+              backgroundColor: '#148fcc',
+            },
+            headerTintColor: '#fff',
+          }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
